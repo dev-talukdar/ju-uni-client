@@ -1,9 +1,11 @@
+import MainLayout from "./components/layout/MainLayout"
+
  
 function App() { 
 
   return (
     <>
-       <p>jahangir nagar university management application</p>
+      <MainLayout></MainLayout>
     </>
   )
 }
