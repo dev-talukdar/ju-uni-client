@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Rootstate } from "../../store/store";
 
+export type TUser = {
+  userId: string;
+  role: string;
+  iat: number;
+  exp: number;
+};
+
 type TAuthState = {
-  user: null | object;
-  token: null | object;
+  user: null | TUser;
+  token: null | string;
 };
 
 const initialState: TAuthState = {
@@ -32,4 +39,4 @@ export const { setUser, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 export const useCurrentToken = (state: Rootstate) => state.auth.token;
-export const useCurrentUser = (state: Rootstate) => state.auth.user;
+export const selectCurrentUser = (state: Rootstate) => state.auth.user;

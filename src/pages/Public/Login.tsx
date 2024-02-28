@@ -1,50 +1,54 @@
-import { Button } from "antd";
-import { useForm } from "react-hook-form";
+import { Button, Row } from "antd";
+import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useAppDispath } from "../../redux/hooks/hooks";
-import { setUser } from "../../redux/features/auth/authSlice";
+import { TUser, setUser } from "../../redux/features/auth/authSlice";
 import verifyToken from "../../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import UsableForm from "../../components/UsableForm/UsableForm";
+import UsableFormInput from "../../components/UsableForm/UsableFormInput";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispath();
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      id: "A-0001",
-      password: "admin123",
-    },
-  });
-  const [login, { error }] = useLoginMutation();
 
-  const onSubmit = async (data) => {
-    const userInformation = {
-      id: data.id,
-      password: data.password,
-    };
-    const res = await login(userInformation).unwrap();
-    const user = verifyToken(res.data.accessToken);
+  const [login] = useLoginMutation();
 
-    dispatch(setUser({ user: user, token: res.data.accessToken }));
-    navigate("/");
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
+    const toastId = toast.loading(" Please wait ...");
+
+    try {
+      const userInformation = {
+        id: data.id,
+        password: data.password,
+      };
+      const res = await login(userInformation).unwrap();
+      const user = verifyToken(res.data.accessToken) as TUser;
+
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+      toast.success("logged in", { id: toastId, duration: 2000 });
+      navigate(`/${user.role}/dashboard`);
+    } catch (err) {
+      toast.error("something went wrong", { id: toastId, duration: 2000 });
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Row justify="center" align="middle" style={{ height: "100vh" }}>
+      <UsableForm onSubmit={onSubmit}>
         <div>
-          <label>Your ID</label>
-          <input {...register("id")} />
+          <UsableFormInput type="text" name="id" label="Your ID" />
         </div>
 
         <div>
-          <label>Password</label>
-          <input {...register("password")} />
+          <UsableFormInput type="text" name="password" label="Your password" />
         </div>
 
         <Button htmlType="submit">Login</Button>
-      </form>
-    </div>
+      </UsableForm>
+    </Row>
   );
 };
 
