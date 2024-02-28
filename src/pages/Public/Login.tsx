@@ -4,8 +4,10 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useAppDispath } from "../../redux/hooks/hooks";
 import { setUser } from "../../redux/features/auth/authSlice";
 import verifyToken from "../../utils/verifyToken";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispath();
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -23,12 +25,8 @@ const Login = () => {
     const res = await login(userInformation).unwrap();
     const user = verifyToken(res.data.accessToken);
 
-    dispatch(
-      setUser({
-        user: user,
-        token: res.data.accessToken,
-      })
-    );
+    dispatch(setUser({ user: user, token: res.data.accessToken }));
+    navigate("/");
   };
 
   return (
