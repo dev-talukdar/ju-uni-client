@@ -17,3 +17,7 @@ export type TSidebarItem = {
   label: ReactNode;
   children?: TSidebarItem[];
 };
+
+export type TProtectedRoutes = {
+  children: ReactNode;
+};
