@@ -16,7 +16,7 @@ const Login = () => {
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    // console.log(data);
     const toastId = toast.loading(" Please wait ...");
 
     try {
