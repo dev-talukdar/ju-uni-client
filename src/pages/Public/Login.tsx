@@ -13,6 +13,10 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispath();
 
+  const defaultValues = {
+    userId: "A-0001",
+    password: "admin123",
+  };
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
@@ -37,7 +41,7 @@ const Login = () => {
 
   return (
     <Row justify="center" align="middle" style={{ height: "100vh" }}>
-      <UsableForm onSubmit={onSubmit}>
+      <UsableForm onSubmit={onSubmit} defaultValues={defaultValues}>
         <div>
           <UsableFormInput type="text" name="id" label="Your ID" />
         </div>

@@ -2,21 +2,8 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import UsableForm from "../../../components/UsableForm/UsableForm";
 import { Button, Col, Flex } from "antd";
 import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
-
-const nameOptions = [
-  {
-    value: "01",
-    label: "Autumn",
-  },
-  {
-    value: "02",
-    label: "Summer",
-  },
-  {
-    value: "03",
-    label: "Fall",
-  },
-];
+import { semesterOptions } from "../../../components/constants/semester";
+import { monthOptions } from "../../../components/constants/global";
 
 const currentYear = new Date().getFullYear();
 const yearOptions = [0, 1, 2, 3, 4, 5, 6, 7].map((number) => ({
@@ -24,15 +11,15 @@ const yearOptions = [0, 1, 2, 3, 4, 5, 6, 7].map((number) => ({
   label: String(currentYear + number),
 }));
 
-console.log(yearOptions);
-
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const name = nameOptions[Number(data.name) - 1].label;
+    const name = semesterOptions[Number(data?.name) - 1]?.label;
     const semesterData = {
       name,
       code: data.name,
       year: data.year,
+      startMonth: data.startMonth,
+      endMonth: data.endMonth,
     };
     console.log(semesterData);
   };
@@ -44,18 +31,19 @@ const CreateAcademicSemester = () => {
           <UsableFormSelect
             label="Semester Name"
             name="name"
-            options={nameOptions}
+            options={semesterOptions}
           />
           <UsableFormSelect label="Year" name="year" options={yearOptions} />
+
           <UsableFormSelect
             label="Start Month"
             name="startMonth"
-            options={yearOptions}
+            options={monthOptions}
           />
           <UsableFormSelect
             label="End Month"
             name="endMonth"
-            options={yearOptions}
+            options={monthOptions}
           />
 
           <Button htmlType="submit">Submit</Button>
