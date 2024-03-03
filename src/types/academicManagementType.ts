@@ -7,5 +7,18 @@ export type TAcademicSemester = {
   endMonth: string;
   createdAt: string;
   updatedAt: string;
+  academicFaculty: string;
+
   __v: number;
+};
+
+export type TAcademicFaculty = {
+  _id: string;
+  name: string;
+};
+
+export type TAcademicDepartment = {
+  _id: string;
+  name: string;
+  academicFaculty: string;
 };
