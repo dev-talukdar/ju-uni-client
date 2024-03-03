@@ -5,10 +5,23 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global";
 import { TAcademicDepartment } from "../../../types/academicManagementType";
-import { useAddAcademicDepartmentMutation } from "../../../redux/features/admin/AcademicManagementApi";
+import {
+  useAddAcademicDepartmentMutation,
+  useGetAllFacultyQuery,
+} from "../../../redux/features/admin/AcademicManagementApi";
+import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
 
 const CreateAcademicDepartment = () => {
   const [addAcademicDepartment] = useAddAcademicDepartmentMutation();
+  const { data: fData, isLoading: fIsLoading } =
+    useGetAllFacultyQuery(undefined);
+
+  console.log(fData);
+
+  const createDepartmentFacultyOptions = fData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name}`,
+  }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log(data);
@@ -35,8 +48,9 @@ const CreateAcademicDepartment = () => {
       <Col span={6}>
         <UsableForm onSubmit={onSubmit}>
           <UsableFormInput type="text" name="name" label="Department Name" />
-          <UsableFormInput
-            type="text"
+          <UsableFormSelect
+            options={createDepartmentFacultyOptions}
+            disabled={fIsLoading}
             name="academicFaculty"
             label="Academic Faculty"
           />
