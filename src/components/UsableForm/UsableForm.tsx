@@ -32,7 +32,7 @@ const UsableForm = ({
     formConfig["resolver"] = resolver;
   }
 
-  const submit = (data) => {
+  const submit: SubmitHandler<FieldValues> = (data) => {
     onSubmit(data);
     methods.reset();
   };

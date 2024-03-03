@@ -40,7 +40,7 @@ const studentDummyData = {
     academicDepartment: "65b4acae3dc8d4f3ad83e416",
   },
 };
-
+console.log(studentDummyData);
 const CreateStudent = () => {
   const onSubmit = () => {
     console.log(onSubmit);
