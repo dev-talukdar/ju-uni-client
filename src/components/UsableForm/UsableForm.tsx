@@ -32,10 +32,15 @@ const UsableForm = ({
     formConfig["resolver"] = resolver;
   }
 
+  const submit = (data) => {
+    onSubmit(data);
+    methods.reset();
+  };
+
   const methods = useForm(formConfig);
   return (
     <FormProvider {...methods}>
-      <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>
+      <Form layout="vertical" onFinish={methods.handleSubmit(submit)}>
         {children}
       </Form>
     </FormProvider>
