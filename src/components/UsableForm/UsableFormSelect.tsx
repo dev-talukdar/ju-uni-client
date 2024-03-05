@@ -4,7 +4,9 @@ import { Controller } from "react-hook-form";
 type TUsableSelectProps = {
   label: string;
   name: string;
-  options: { value: string; label: string; disable?: boolean }[] | undefined;
+  options:
+    | { value: string | number; label: string | number; disable?: boolean }[]
+    | undefined;
   disabled?: boolean;
 };
 
