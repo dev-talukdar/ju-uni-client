@@ -12,6 +12,7 @@ import "../AcademicManagement/AcademicSemester.css";
 import { TQueryParam } from "../../../types/global";
 import { useGetAllStudentQuery } from "../../../redux/features/admin/UserManagementApi";
 import { TStudent } from "../../../types/userManagementType";
+import { Link } from "react-router-dom";
 
 export type TTableData = Pick<
   TStudent,
@@ -71,10 +72,13 @@ const StudentDataTable = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
+        console.log(item);
         return (
           <Space>
-            <Button>Details</Button>
+            <Link to={`/admin/all-student/${item.key}`}>
+              <Button>Details</Button>
+            </Link>
             <Button>Update</Button>
             <Button>Block</Button>
           </Space>

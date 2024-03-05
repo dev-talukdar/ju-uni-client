@@ -7,3 +7,5 @@ const AllFaculty = () => {
 };
 
 export default AllFaculty;
+
+//TODO: Ei page e a Faculty er sob data information show korte hobe as table
