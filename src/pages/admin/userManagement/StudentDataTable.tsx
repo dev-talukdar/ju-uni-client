@@ -13,7 +13,10 @@ import { TQueryParam } from "../../../types/global";
 import { useGetAllStudentQuery } from "../../../redux/features/admin/UserManagementApi";
 import { TStudent } from "../../../types/userManagementType";
 
-export type TTableData = Pick<TStudent, "fullName" | "id">;
+export type TTableData = Pick<
+  TStudent,
+  "fullName" | "id" | "email" | "contactNo"
+>;
 
 const StudentDataTable = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
@@ -23,7 +26,7 @@ const StudentDataTable = () => {
     isLoading,
     isFetching,
   } = useGetAllStudentQuery([
-    { name: "limit", value: 3 },
+    // { name: "limit", value: 3 }, to increase decrease number of data each table
     { name: "page", value: page },
     { name: "sort", value: "id" },
     ...params,
@@ -34,10 +37,12 @@ const StudentDataTable = () => {
   const metaData = studentData?.meta;
 
   const tableData = (studentData?.data as any)?.map(
-    ({ _id, fullName, id }: TStudent) => ({
+    ({ _id, fullName, id, email, contactNo }: TStudent) => ({
       key: _id,
       fullName,
       id,
+      email,
+      contactNo,
     })
   ); //TODO -> used unexpected any to satisfy type error
 
@@ -51,6 +56,16 @@ const StudentDataTable = () => {
       title: "Roll Number",
       key: "id",
       dataIndex: "id",
+    },
+    {
+      title: "Email",
+      key: "email",
+      dataIndex: "email",
+    },
+    {
+      title: "Contact Number",
+      key: "contactNo",
+      dataIndex: "contactNo",
     },
 
     {
