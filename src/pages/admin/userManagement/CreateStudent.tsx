@@ -1,7 +1,7 @@
-import { Button, Col, Divider, Flex, Row } from "antd";
+import { Button, Col, Divider, Flex, Form, Input, Row } from "antd";
 import UsableForm from "../../../components/UsableForm/UsableForm";
 import UsableFormInput from "../../../components/UsableForm/UsableFormInput";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
 import {
   bloodGroupOptions,
@@ -12,6 +12,7 @@ import {
   useGetAllDepartmentQuery,
   useGetAllSemestersQuery,
 } from "../../../redux/features/admin/AcademicManagementApi";
+import { useAddStudentMutation } from "../../../redux/features/admin/UserManagementApi";
 
 const studentDummyData = {
   password: "student123",
@@ -89,6 +90,7 @@ const StudentDefaultValue = {
 };
 
 const CreateStudent = () => {
+  const [addStudent] = useAddStudentMutation();
   const { data: SemesterData, isLoading: SemesterIsLoading } =
     useGetAllSemestersQuery(undefined);
 
@@ -104,14 +106,18 @@ const CreateStudent = () => {
     value: item._id,
     label: `${item.name}`,
   }));
-  console.log(DepartmentData);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    const studentData = {
+      password: "student123",
+      student: data,
+    };
 
-    // const formData = new FormData();
-    // formData.append("data", JSON.stringify(data));
-    // // console.log(formData);
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(studentData));
+    formData.append("file", data.image);
+
+    addStudent(formData);
   };
   return (
     <Flex justify="center" align="center">
@@ -148,7 +154,6 @@ const CreateStudent = () => {
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              {/* <UsableDatePicker name="dateOfBirth" label="Date of Birth" /> */}
               <UsableDatePicker name="dateOfBirth" label="Date of Birth" />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
@@ -156,6 +161,36 @@ const CreateStudent = () => {
                 options={bloodGroupOptions}
                 name="bloogGroup"
                 label="Blood Group"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              {/* <Controller
+                name="image"
+                render={({ field: { onChange, value, ...field } }) => {
+                  return (
+                    <Form.Item label="Profile Picture">
+                      <Input
+                        type="file"
+                        value={value?.fileName}
+                        {...field}
+                        onChange={(e) => onChange(e.target.files?.[0])}
+                      />
+                    </Form.Item>
+                  );
+                }}
+              /> */}
+              <Controller
+                name="image"
+                render={({ field: { onChange, value, ...field } }) => (
+                  <Form.Item label="Picture">
+                    <Input
+                      type="file"
+                      value={value?.fileName}
+                      {...field}
+                      onChange={(e) => onChange(e.target.files?.[0])}
+                    />
+                  </Form.Item>
+                )}
               />
             </Col>
           </Row>
