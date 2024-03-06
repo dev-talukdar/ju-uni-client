@@ -4,8 +4,11 @@ import { Controller } from "react-hook-form";
 type TUsableSelectProps = {
   label: string;
   name: string;
-  options: { value: string; label: string; disable?: boolean }[] | undefined;
+  options:
+    | { value: string | number; label: string | number; disable?: boolean }[]
+    | undefined;
   disabled?: boolean;
+  mode?: "multiple" | undefined;
 };
 
 const UsableFormSelect = ({
@@ -13,6 +16,7 @@ const UsableFormSelect = ({
   name,
   options,
   disabled,
+  mode,
 }: TUsableSelectProps) => {
   return (
     <Controller
@@ -20,6 +24,7 @@ const UsableFormSelect = ({
       render={({ field, fieldState: { error } }) => (
         <Form.Item label={label}>
           <Select
+            mode={mode}
             style={{ width: "100% " }}
             {...field}
             options={options}

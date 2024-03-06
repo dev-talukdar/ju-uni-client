@@ -5,6 +5,12 @@ import CreateAcademicDepartment from "../pages/admin/AcademicManagement/CreateAc
 import CreateAcademicFaculty from "../pages/admin/AcademicManagement/CreateAcademicFaculty";
 import CreateAcademicSemester from "../pages/admin/AcademicManagement/CreateAcademicSemester";
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import AllCourses from "../pages/admin/courseManagement/AllCourses";
+import AllOffereedCourse from "../pages/admin/courseManagement/AllOffereedCourse";
+import AllSemesterReigstration from "../pages/admin/courseManagement/AllSemesterReigstration";
+import CreateCourse from "../pages/admin/courseManagement/CreateCourse";
+import OfferNewCourse from "../pages/admin/courseManagement/OfferNewCourse";
+import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration";
 import AllAdmin from "../pages/admin/userManagement/AllAdmin";
 import AllFaculty from "../pages/admin/userManagement/AllFaculty";
 import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
@@ -95,6 +101,41 @@ export const adminPaths = [
         name: "Create Payment",
         path: "create-student",
         element: <CreateStudent></CreateStudent>,
+      },
+    ],
+  },
+  {
+    name: "Course management",
+    children: [
+      {
+        name: "Create a Course ",
+        path: "create-a-new-course",
+        element: <CreateCourse></CreateCourse>,
+      },
+      {
+        name: "All Courses",
+        path: "all-courses",
+        element: <AllCourses></AllCourses>,
+      },
+      {
+        name: "Offer Course ",
+        path: "offer-course",
+        element: <OfferNewCourse></OfferNewCourse>,
+      },
+      {
+        name: "All Offered Course",
+        path: "all-offered-course",
+        element: <AllOffereedCourse></AllOffereedCourse>,
+      },
+      {
+        name: "Semister Registration",
+        path: "semester-registration",
+        element: <SemesterRegistration></SemesterRegistration>,
+      },
+      {
+        name: "All Semester Registration",
+        path: "all-semester-registration",
+        element: <AllSemesterReigstration></AllSemesterReigstration>,
       },
     ],
   },
