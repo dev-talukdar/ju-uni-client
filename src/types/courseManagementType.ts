@@ -26,3 +26,10 @@ export type PreRequisiteCourse = {
   course: any;
   isDeleted: boolean;
 };
+
+export type TAllCourse = {
+  _id: string;
+  title: string;
+  code: string;
+  prefix: string;
+};
