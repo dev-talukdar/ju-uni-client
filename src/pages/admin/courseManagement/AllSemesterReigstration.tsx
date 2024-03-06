@@ -44,9 +44,6 @@ const AllSemesterReigstration = () => {
   );
 
   const handleStatusUpdate = (data: { key: any }) => {
-    console.log("semester", semesterId);
-    console.log("newStatus", data.key);
-
     const updateData = {
       id: semesterId,
       data: {
