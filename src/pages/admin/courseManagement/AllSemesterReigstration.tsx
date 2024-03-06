@@ -1,15 +1,32 @@
-import { Button, Table, TableColumnsType } from "antd";
-import { TAcademicSemester } from "../../../types/academicManagementType";
-import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagementApi";
+import { Button, Dropdown, Table, TableColumnsType, Tag } from "antd";
+import {
+  useGetAllRegisteredSemestersQuery,
+  useUpdateRegisteredSemesterMutation,
+} from "../../../redux/features/admin/courseManagementApi";
 import moment from "moment";
+import { TSemester } from "../../../types/courseManagementType";
+import { useState } from "react";
 
-export type TTableData = Pick<
-  TAcademicSemester,
-  "name" | "startMonth" | "endMonth" | "year"
->;
+export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
+
+const items = [
+  {
+    label: "Upcoming",
+    key: "UPCOMING",
+  },
+  {
+    label: "Ongoing",
+    key: "ONGOING",
+  },
+  {
+    label: "Ended",
+    key: "ENDED",
+  },
+];
 
 const AllSemesterReigstration = () => {
-  // const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
+  const [semesterId, setSemesterId] = useState("");
+  const [updateSemesterStatus] = useUpdateRegisteredSemesterMutation();
   const {
     data: semesterData,
     isLoading,
@@ -26,6 +43,24 @@ const AllSemesterReigstration = () => {
     })
   );
 
+  const handleStatusUpdate = (data: { key: any }) => {
+    console.log("semester", semesterId);
+    console.log("newStatus", data.key);
+
+    const updateData = {
+      id: semesterId,
+      data: {
+        status: data.key,
+      },
+    };
+    updateSemesterStatus(updateData);
+  };
+
+  const menuProps = {
+    items,
+    onClick: handleStatusUpdate,
+  };
+
   const columns: TableColumnsType<TTableData> = [
     {
       title: "Name",
@@ -36,6 +71,19 @@ const AllSemesterReigstration = () => {
       title: "Status",
       key: "status",
       dataIndex: "status",
+      render: (item) => {
+        let color;
+        if (item === "UPCOMING") {
+          color = "blue";
+        }
+        if (item === "ONGOING") {
+          color = "orange";
+        }
+        if (item === "ENDED") {
+          color = "green";
+        }
+        return <Tag color={color}>{item}</Tag>;
+      },
     },
     {
       title: "Start Date",
@@ -50,28 +98,17 @@ const AllSemesterReigstration = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
         return (
           <div>
-            <Button>Update</Button>
+            <Dropdown menu={menuProps} trigger={["click"]}>
+              <Button onClick={() => setSemesterId(item.key)}>Update</Button>
+            </Dropdown>
           </div>
         );
       },
     },
   ];
-
-  // const onChange: TableProps<TTableData>["onChange"] = (
-  //   _pagination, //added underscore, because we are not using at this moment.origin no underscore
-  //   filters,
-  //   _sorter,
-  //   extra
-  // ) => {
-  //   if (extra.action === "filter") {
-  //     const queryParams: TQueryParam[] = [];
-
-  //     setParams(queryParams);
-  //   }
-  // };
 
   if (isLoading) {
     return (
