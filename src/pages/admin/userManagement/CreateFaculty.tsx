@@ -32,7 +32,7 @@ const FacultyDefaultValue = {
     academicDepartment: "65e4668bada0f800e6af6d7f",
   },
 };
-console.log(FacultyDefaultValue);
+// console.log(FacultyDefaultValue);
 
 const CreateFaculty = () => {
   const [addfaculty] = useAddFacultyMutation();

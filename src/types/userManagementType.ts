@@ -1,3 +1,5 @@
+import { TAcademicFaculty } from "./academicManagementType";
+
 export interface TStudent {
   _id: string;
   id: string;
@@ -75,14 +77,6 @@ export type TAcademicDepartment = {
   _id: string;
   name: string;
   academicFaculty: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
-
-export type TAcademicFaculty = {
-  _id: string;
-  name: string;
   createdAt: string;
   updatedAt: string;
   __v: number;

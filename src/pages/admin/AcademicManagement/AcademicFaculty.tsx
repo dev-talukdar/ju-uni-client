@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetAllFacultyQuery } from "../../../redux/features/admin/AcademicManagementApi";
+import { useGetAllAcademicFacultyQuery } from "../../../redux/features/admin/AcademicManagementApi";
 import { TQueryParam } from "../../../types/global";
 import { Button, Table, TableColumnsType, TableProps } from "antd";
 import { TAcademicFaculty } from "../../../types/academicManagementType";
@@ -12,7 +12,7 @@ const AcademicFaculty = () => {
     data: facultyData,
     isLoading,
     isFetching,
-  } = useGetAllFacultyQuery(params);
+  } = useGetAllAcademicFacultyQuery(params);
 
   // console.log({ isLoading, isFetching });
 
