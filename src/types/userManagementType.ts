@@ -87,3 +87,29 @@ export type TAcademicFaculty = {
   updatedAt: string;
   __v: number;
 };
+
+export type Root = {
+  password: string;
+  faculty: TFaculty;
+};
+
+export type TFaculty = {
+  _id: string;
+  designation: string;
+  name: TFName;
+  gender: string;
+  email: string;
+  dateOfBirth: string;
+  contactNo: string;
+  emergencyContactNo: string;
+  bloogGroup: string;
+  presentAddress: string;
+  permanentAddress: string;
+  academicDepartment: string;
+};
+
+export type TFName = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+};

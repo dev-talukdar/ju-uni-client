@@ -1,0 +1,301 @@
+[
+  {
+    "id": 1,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Nahida",
+        "middleName": "Parvin",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "faculgty3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 2,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Farida",
+        "middleName": "Parvin",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "facultyd3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 3,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Anwara ",
+        "middleName": "Parvin",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "faculmty3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 4,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Sazzad",
+        "middleName": "Das",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "facultyy3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 5,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Malekul",
+        "middleName": "Kuddus",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "facultcy3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 6,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Jesmin",
+        "middleName": "Akhter",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "facultyb3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 7,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Mrs",
+        "middleName": "Shahina",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "facultyg3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 8,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Abed",
+        "middleName": "Ali",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "faculty73@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 9,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Muhammad",
+        "middleName": "Abdullah",
+        "lastName": "Talukdar"
+      },
+
+      "gender": "male",
+      "email": "facult4y3@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 10,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Ali",
+        "middleName": "Das",
+        "lastName": "Koli"
+      },
+
+      "gender": "male",
+      "email": "faculty43@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 11,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Robin",
+        "middleName": "Das",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "faculty33@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 12,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Das",
+        "middleName": "Mainul",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "faculty23@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  },
+  {
+    "id": 13,
+    "password": "faculty123",
+    "faculty": {
+      "designation": "Lecturer",
+
+      "name": {
+        "firstName": "Mainul",
+        "middleName": "Ahsan",
+        "lastName": "Rahman"
+      },
+
+      "gender": "male",
+      "email": "faculty13@gmail.com",
+      "dateOfBirth": "1990-01-01",
+      "contactNo": "123",
+      "emergencyContactNo": "123",
+      "bloogGroup": "A+",
+      "presentAddress": "123 Main St, Cityville",
+      "permanentAddress": "456 Oak St, Townsville",
+      "academicDepartment": "65e4668bada0f800e6af6d7f"
+    }
+  }
+]

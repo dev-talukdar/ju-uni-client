@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagementApi";
-import { Button, Table, TableColumnsType, TableProps } from "antd";
+import { Table, TableColumnsType, TableProps } from "antd";
 import { TQueryParam } from "../../../types/global";
-import { TAllCourse } from "../../../types/courseManagementType";
+import { TCourses } from "../../../types/courseManagementType";
+import AddFacultyModal from "../../../components/modals/AddFacultyModal";
 
-export type TCourseData = Pick<TAllCourse, "title">;
+export type TCourseData = Pick<TCourses, "title">;
 
 const AllCourses = () => {
   const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
@@ -15,7 +16,7 @@ const AllCourses = () => {
   } = useGetAllCoursesQuery(params);
 
   const tableData = courseData?.data?.map(
-    ({ _id, title, prefix, code }: TAllCourse) => ({
+    ({ _id, title, prefix, code }: TCourses) => ({
       key: _id,
       title,
       code: `${prefix} ${code}`,
@@ -37,10 +38,10 @@ const AllCourses = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
         return (
           <div>
-            <Button>Assign Faculty</Button>
+            <AddFacultyModal data={item} />
           </div>
         );
       },
