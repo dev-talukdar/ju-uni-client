@@ -33,7 +33,7 @@ const StudentDataTable = () => {
     ...params,
   ]);
 
-  console.log({ isLoading, isFetching });
+  // console.log({ isLoading, isFetching });
 
   const metaData = studentData?.meta;
 
@@ -73,7 +73,7 @@ const StudentDataTable = () => {
       title: "Action",
       key: "x",
       render: (item) => {
-        console.log(item);
+        // console.log(item);
         return (
           <Space>
             <Link to={`/admin/all-student/${item.key}`}>

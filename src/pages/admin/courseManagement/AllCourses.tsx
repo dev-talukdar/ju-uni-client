@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagementApi";
-import { Table, TableColumnsType, TableProps } from "antd";
+import {
+  useAssignFacultiesMutation,
+  useGetAllCoursesQuery,
+} from "../../../redux/features/admin/courseManagementApi";
+import { Button, Modal, Table, TableColumnsType, TableProps } from "antd";
 import { TQueryParam } from "../../../types/global";
 import { TCourses } from "../../../types/courseManagementType";
-import AddFacultyModal from "../../../components/modals/AddFacultyModal";
+import UsableForm from "../../../components/UsableForm/UsableForm";
+import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
+import { useGetAllFacultiesQuery } from "../../../redux/features/admin/UserManagementApi";
 
 export type TCourseData = Pick<TCourses, "title">;
 
@@ -39,11 +44,7 @@ const AllCourses = () => {
       title: "Action",
       key: "x",
       render: (item) => {
-        return (
-          <div>
-            <AddFacultyModal data={item} />
-          </div>
-        );
+        return <AddFacultyModal facultyInformation={item} />;
       },
     },
   ];
@@ -89,4 +90,56 @@ const AllCourses = () => {
   );
 };
 
+//modal started from here :
+const AddFacultyModal = ({ facultyInformation }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: facultiesData } = useGetAllFacultiesQuery(undefined);
+  const [addfaculties] = useAssignFacultiesMutation();
+
+  const createFacultyOptions = facultiesData?.data?.map((item) => ({
+    value: item._id,
+    label: item.fullName,
+  }));
+
+  const handleSubmit = (data) => {
+    const facultyData = {
+      courseId: facultyInformation.key,
+      data,
+    };
+    addfaculties(facultyData);
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={showModal}>Assign Faculty</Button>
+      <Modal
+        title="Please choose from list"
+        open={isModalOpen}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <UsableForm onSubmit={handleSubmit}>
+          <UsableFormSelect
+            mode="multiple"
+            options={createFacultyOptions}
+            name="faculties"
+            label="Faculty"
+          />
+          <Button htmlType="submit">Submit</Button>
+        </UsableForm>
+      </Modal>
+    </>
+  );
+};
+
 export default AllCourses;
+
+//TODO need to fix these 2 type error from this page

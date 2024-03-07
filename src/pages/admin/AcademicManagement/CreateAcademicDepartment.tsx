@@ -7,14 +7,14 @@ import { TResponse } from "../../../types/global";
 import { TAcademicDepartment } from "../../../types/academicManagementType";
 import {
   useAddAcademicDepartmentMutation,
-  useGetAllFacultyQuery,
+  useGetAllAcademicFacultyQuery,
 } from "../../../redux/features/admin/AcademicManagementApi";
 import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
 
 const CreateAcademicDepartment = () => {
   const [addAcademicDepartment] = useAddAcademicDepartmentMutation();
   const { data: fData, isLoading: fIsLoading } =
-    useGetAllFacultyQuery(undefined);
+    useGetAllAcademicFacultyQuery(undefined);
 
   console.log(fData);
 
