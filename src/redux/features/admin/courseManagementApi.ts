@@ -1,4 +1,4 @@
-import { TSemester } from "../../../types/courseManagementType";
+import { TCourses, TSemester } from "../../../types/courseManagementType";
 import { TQueryParam, TResponseRedux } from "../../../types/global";
 import baseApi from "../../api/baseApi";
 
@@ -40,7 +40,7 @@ const courseManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["semester"],
     }),
-
+    // update semester started from here
     updateRegisteredSemester: builder.mutation({
       query: (args) => ({
         url: `/semester-registrations/${args.id}`,
@@ -70,7 +70,7 @@ const courseManagementApi = baseApi.injectEndpoints({
 
       providesTags: ["courses"],
 
-      transformResponse: (response: TResponseRedux<any>) => {
+      transformResponse: (response: TResponseRedux<TCourses[]>) => {
         return {
           data: response.data,
           meta: response.meta,
@@ -86,6 +86,15 @@ const courseManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["courses"],
     }),
+
+    assignFaculties: builder.mutation({
+      query: (args) => ({
+        url: `/courses/${args.courseId}/assign-faculties`,
+        method: "PUT",
+        body: args.data,
+      }),
+      invalidatesTags: ["courses"],
+    }),
   }),
 });
 
@@ -95,4 +104,5 @@ export const {
   useUpdateRegisteredSemesterMutation,
   useGetAllCoursesQuery,
   useAddCourseMutation,
+  useAssignFacultiesMutation,
 } = courseManagementApi;

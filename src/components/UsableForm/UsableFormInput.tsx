@@ -5,6 +5,7 @@ type TInputProps = {
   type: string;
   name: string;
   label?: string;
+  degignation?: string;
 };
 
 const UsableFormInput = ({ type, name, label }: TInputProps) => {
