@@ -15,6 +15,7 @@ import AllAdmin from "../pages/admin/userManagement/AllAdmin";
 import AllFaculty from "../pages/admin/userManagement/AllFaculty";
 import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
 import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
+import CreatePayment from "../pages/admin/userManagement/CreatePayment";
 import CreateStudent from "../pages/admin/userManagement/CreateStudent";
 import StudentDataTable from "../pages/admin/userManagement/StudentDataTable";
 // import StudentDetails from "../pages/admin/userManagement/studentManagement/StudentDetails";
@@ -99,8 +100,8 @@ export const adminPaths = [
       // },
       {
         name: "Create Payment",
-        path: "create-student",
-        element: <CreateStudent></CreateStudent>,
+        path: "create-payment",
+        element: <CreatePayment></CreatePayment>,
       },
     ],
   },

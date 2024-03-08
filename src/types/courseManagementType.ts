@@ -35,6 +35,7 @@ export type TAllCourse = {
 };
 
 export type TOfferedCourse = {
+  _id: string;
   semesterRegistration: string;
   academicFaculty: string;
   academicDepartment: string;
