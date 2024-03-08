@@ -54,3 +54,34 @@ export const semesterOptions = [
   { value: "02", label: "Summer" },
   { value: "03", label: "Fall" },
 ];
+
+export const daysNames = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+export const daysOptions = daysNames.map((item) => ({
+  value: item,
+  label: item,
+}));
+
+export const timeNames = [
+  "12:30",
+  "13:30",
+  "14:30",
+  "15:30",
+  "16:30",
+  "17:30",
+  "18:30",
+  "19:30",
+];
+
+export const timeOptions = timeNames.map((item) => ({
+  value: item,
+  label: item,
+}));

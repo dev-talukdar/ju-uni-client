@@ -7,12 +7,15 @@ import {
   useGetAllSemestersQuery,
 } from "../../../redux/features/admin/AcademicManagementApi";
 import UsableFormInput from "../../../components/UsableForm/UsableFormInput";
-// import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagementApi";
+import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagementApi";
+import { useGetAllFacultiesQuery } from "../../../redux/features/admin/UserManagementApi";
+import { daysOptions, timeOptions } from "../../../components/constants/global";
 
 const OfferNewCourse = () => {
   const { data: academicSemesterData } = useGetAllSemestersQuery(undefined);
   const { data: academicDepartmentData } = useGetAllDepartmentQuery(undefined);
-  // const { data: academicCourseData } = useGetAllCoursesQuery(undefined);
+  const { data: academicCourseData } = useGetAllCoursesQuery(undefined);
+  const { data: FacultyData } = useGetAllFacultiesQuery(undefined);
   const { data: academicFacultyData } =
     useGetAllAcademicFacultyQuery(undefined);
 
@@ -35,10 +38,15 @@ const OfferNewCourse = () => {
     })
   );
 
-  // const academicCourseOptions = academicCourseData?.data?.map((item) => ({
-  //   value: item._id,
-  //   label: data.name,
-  // }));
+  const facultyOptions = FacultyData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name.firstName} ${item.name.middleName} ${item.name.lastName}`,
+  }));
+
+  const academicCourseOptions = academicCourseData?.data?.map((item) => ({
+    value: item._id,
+    label: item.title,
+  }));
 
   const onSubmit = (data) => {
     console.log(data);
@@ -78,7 +86,7 @@ const OfferNewCourse = () => {
               <UsableFormSelect
                 label="Course Name"
                 name="course"
-                options={academicSemesterOptions}
+                options={academicCourseOptions}
               />
             </Col>
 
@@ -86,7 +94,7 @@ const OfferNewCourse = () => {
               <UsableFormSelect
                 label="Faculty Name"
                 name="faculty"
-                options={academicFacultiesOptions}
+                options={facultyOptions}
               />
             </Col>
 
@@ -110,9 +118,10 @@ const OfferNewCourse = () => {
 
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect
+                mode="multiple"
                 label="Days"
                 name="days"
-                options={academicSemesterOptions}
+                options={daysOptions}
               />
             </Col>
             {/* dayoption create korte hobe like we did in create semester */}
@@ -121,14 +130,14 @@ const OfferNewCourse = () => {
               <UsableFormSelect
                 label="Start Time"
                 name="startTime"
-                options={academicFacultiesOptions}
+                options={timeOptions}
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect
                 label="End Time"
                 name="endTime"
-                options={academicFacultiesOptions}
+                options={timeOptions}
               />
             </Col>
           </Row>
