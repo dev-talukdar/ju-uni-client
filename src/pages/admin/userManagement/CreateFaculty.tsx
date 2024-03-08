@@ -57,7 +57,6 @@ const CreateFaculty = () => {
     formData.append("data", JSON.stringify(facultyData));
 
     addfaculty(formData);
-    //TODO- this page should be complete to assign faculty in courses.
   };
   return (
     <Flex justify="center" align="center">

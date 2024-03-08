@@ -9,6 +9,7 @@ import { TCourses } from "../../../types/courseManagementType";
 import UsableForm from "../../../components/UsableForm/UsableForm";
 import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/UserManagementApi";
+import { FieldValues } from "react-hook-form";
 
 export type TCourseData = Pick<TCourses, "title">;
 

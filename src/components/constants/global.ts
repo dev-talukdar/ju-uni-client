@@ -55,15 +55,7 @@ export const semesterOptions = [
   { value: "03", label: "Fall" },
 ];
 
-export const daysNames = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+export const daysNames = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
 export const daysOptions = daysNames.map((item) => ({
   value: item,

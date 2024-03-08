@@ -1,4 +1,8 @@
-import { TCourses, TSemester } from "../../../types/courseManagementType";
+import {
+  TCourses,
+  TOfferedCourse,
+  TSemesterRegistration,
+} from "../../../types/courseManagementType";
 import { TQueryParam, TResponseRedux } from "../../../types/global";
 import baseApi from "../../api/baseApi";
 
@@ -24,7 +28,9 @@ const courseManagementApi = baseApi.injectEndpoints({
 
       providesTags: ["semester"],
 
-      transformResponse: (response: TResponseRedux<TSemester[]>) => {
+      transformResponse: (
+        response: TResponseRedux<TSemesterRegistration[]>
+      ) => {
         return {
           data: response.data,
           meta: response.meta,
@@ -78,6 +84,34 @@ const courseManagementApi = baseApi.injectEndpoints({
       },
     }),
 
+    //Offered course registration started from here
+    getAllOfferedCourses: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/offered-courses",
+          method: "GET",
+          params: params,
+        };
+      },
+
+      providesTags: ["offeredCourse"],
+
+      transformResponse: (response: TResponseRedux<TOfferedCourse[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
+
     addCourse: builder.mutation({
       query: (data) => ({
         url: "/courses/create-course",
@@ -95,6 +129,15 @@ const courseManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["courses"],
     }),
+
+    addOfferedCourse: builder.mutation({
+      query: (data) => ({
+        url: "offered-courses/create-offered-course",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["offeredCourse"],
+    }),
   }),
 });
 
@@ -105,4 +148,6 @@ export const {
   useGetAllCoursesQuery,
   useAddCourseMutation,
   useAssignFacultiesMutation,
+  useGetAllOfferedCoursesQuery,
+  useAddOfferedCourseMutation,
 } = courseManagementApi;
