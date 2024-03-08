@@ -33,3 +33,30 @@ export type TAllCourse = {
   code: string;
   prefix: string;
 };
+
+export type TOfferedCourse = {
+  _id: string;
+  semesterRegistration: string;
+  academicFaculty: string;
+  academicDepartment: string;
+  course: string;
+  faculty: string;
+  section: number;
+  maxCapacity: number;
+  days: string[];
+  startTime: string;
+  endTime: string;
+};
+
+export type TSemesterRegistration = {
+  _id: string;
+  academicSemester: {
+    name: string;
+  };
+  name: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  minCredit: number;
+  maxCredit: number;
+};

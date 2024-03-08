@@ -4,24 +4,43 @@ import UsableFormSelect from "../../../components/UsableForm/UsableFormSelect";
 import {
   useGetAllAcademicFacultyQuery,
   useGetAllDepartmentQuery,
-  useGetAllSemestersQuery,
 } from "../../../redux/features/admin/AcademicManagementApi";
 import UsableFormInput from "../../../components/UsableForm/UsableFormInput";
-// import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagementApi";
+import {
+  useAddOfferedCourseMutation,
+  useGetAllCoursesQuery,
+  useGetAllRegisteredSemestersQuery,
+} from "../../../redux/features/admin/courseManagementApi";
+import { useGetAllFacultiesQuery } from "../../../redux/features/admin/UserManagementApi";
+import { daysOptions, timeOptions } from "../../../components/constants/global";
+// import { useState } from "react";
+// import UsableSelectWithWatch from "../../../components/UsableForm/UsableSelectWithWatch";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import { TResponse } from "../../../types/global";
+import { TOfferedCourse } from "../../../types/courseManagementType";
 
 const OfferNewCourse = () => {
-  const { data: academicSemesterData } = useGetAllSemestersQuery(undefined);
+  // const [facultyId, setFacultyId] = useState("");
+  const [addOfferedCourse] = useAddOfferedCourseMutation(undefined);
+  const { data: semesterRegistrationData } =
+    useGetAllRegisteredSemestersQuery(undefined);
   const { data: academicDepartmentData } = useGetAllDepartmentQuery(undefined);
-  // const { data: academicCourseData } = useGetAllCoursesQuery(undefined);
+  const { data: academicCourseData } = useGetAllCoursesQuery(undefined);
+  const { data: FacultyData } = useGetAllFacultiesQuery(undefined);
   const { data: academicFacultyData } =
     useGetAllAcademicFacultyQuery(undefined);
+  // console.log(isLoading);
+  // console.log(isError);
+  // console.log(error);
+  // console.log(semesterRegistrationData);
 
-  console.log(academicFacultyData);
-
-  const academicSemesterOptions = academicSemesterData?.data?.map((item) => ({
-    value: item._id,
-    label: `${item.name} ${item.year}`,
-  }));
+  const academicSemesterOptions = semesterRegistrationData?.data?.map(
+    (item) => ({
+      value: item._id,
+      label: `${item.academicSemester.name} ${item.status}`,
+    })
+  );
 
   const academicFacultiesOptions = academicFacultyData?.data?.map((item) => ({
     value: item._id,
@@ -35,14 +54,45 @@ const OfferNewCourse = () => {
     })
   );
 
-  // const academicCourseOptions = academicCourseData?.data?.map((item) => ({
-  //   value: item._id,
-  //   label: data.name,
-  // }));
+  const facultyOptions = FacultyData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name.firstName} ${item.name.middleName} ${item.name.lastName}`,
+  }));
 
-  const onSubmit = (data) => {
+  const academicCourseOptions = academicCourseData?.data?.map((item) => ({
+    value: item._id,
+    label: item.title,
+  }));
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Faculty is now creating ...");
+    const offeredCourseData = {
+      semesterRegistration: data.semesterRegistration,
+      academicFaculty: data.academicFaculty,
+      academicDepartment: data.academicDepartment,
+      course: data.course,
+      faculty: data.faculty,
+      section: parseInt(data.section),
+      maxCapacity: parseInt(data.maxCapacity),
+      days: data.days,
+      startTime: data.startTime,
+      endTime: data.endTime,
+      name: data.name,
+    };
     console.log(data);
+
+    try {
+      const res = (await addOfferedCourse(
+        offeredCourseData
+      )) as TResponse<TOfferedCourse>;
+      if (res.error) {
+        toast.error(res.error.data.message, { id: toastId });
+      }
+    } catch (err) {
+      toast.error("something went wrong", { id: toastId });
+    }
   };
+
   return (
     <Flex justify="center" align="center">
       <Col span={24}>
@@ -76,9 +126,10 @@ const OfferNewCourse = () => {
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect
+                // onValueChange={setFacultyId}
                 label="Course Name"
                 name="course"
-                options={academicSemesterOptions}
+                options={academicCourseOptions}
               />
             </Col>
 
@@ -86,7 +137,7 @@ const OfferNewCourse = () => {
               <UsableFormSelect
                 label="Faculty Name"
                 name="faculty"
-                options={academicFacultiesOptions}
+                options={facultyOptions}
               />
             </Col>
 
@@ -110,9 +161,10 @@ const OfferNewCourse = () => {
 
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect
+                mode="multiple"
                 label="Days"
                 name="days"
-                options={academicSemesterOptions}
+                options={daysOptions}
               />
             </Col>
             {/* dayoption create korte hobe like we did in create semester */}
@@ -121,14 +173,14 @@ const OfferNewCourse = () => {
               <UsableFormSelect
                 label="Start Time"
                 name="startTime"
-                options={academicFacultiesOptions}
+                options={timeOptions}
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect
                 label="End Time"
                 name="endTime"
-                options={academicFacultiesOptions}
+                options={timeOptions}
               />
             </Col>
           </Row>

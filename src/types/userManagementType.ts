@@ -100,6 +100,7 @@ export type TFaculty = {
   presentAddress: string;
   permanentAddress: string;
   academicDepartment: string;
+  fullName: string;
 };
 
 export type TFName = {
