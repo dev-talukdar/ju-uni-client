@@ -10,27 +10,30 @@ import {
   useAddOfferedCourseMutation,
   useGetAllCoursesQuery,
   useGetAllRegisteredSemestersQuery,
+  useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagementApi";
-import { useGetAllFacultiesQuery } from "../../../redux/features/admin/UserManagementApi";
+
 import { daysOptions, timeOptions } from "../../../components/constants/global";
-// import { useState } from "react";
-// import UsableSelectWithWatch from "../../../components/UsableForm/UsableSelectWithWatch";
+import { useState } from "react";
+import UsableSelectWithWatch from "../../../components/UsableForm/UsableSelectWithWatch";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global";
 import { TOfferedCourse } from "../../../types/courseManagementType";
 
 const OfferNewCourse = () => {
-  // const [facultyId, setFacultyId] = useState("");
+  const [facultyId, setFacultyId] = useState("");
   const [addOfferedCourse] = useAddOfferedCourseMutation(undefined);
   const { data: semesterRegistrationData } =
     useGetAllRegisteredSemestersQuery(undefined);
   const { data: academicDepartmentData } = useGetAllDepartmentQuery(undefined);
   const { data: academicCourseData } = useGetAllCoursesQuery(undefined);
-  const { data: FacultyData } = useGetAllFacultiesQuery(undefined);
+  const { data: fetchingFaculties } = useGetCourseFacultiesQuery(facultyId, {
+    skip: !facultyId,
+  });
   const { data: academicFacultyData } =
     useGetAllAcademicFacultyQuery(undefined);
-  // console.log(isLoading);
+  // console.log(facultyId);
   // console.log(isError);
   // console.log(error);
   // console.log(semesterRegistrationData);
@@ -54,10 +57,12 @@ const OfferNewCourse = () => {
     })
   );
 
-  const facultyOptions = FacultyData?.data?.map((item) => ({
-    value: item._id,
-    label: `${item.name.firstName} ${item.name.middleName} ${item.name.lastName}`,
-  }));
+  const facultyOptions = fetchingFaculties?.data?.faculties?.map(
+    (item: any) => ({
+      value: item._id,
+      label: item.fullName,
+    })
+  );
 
   const academicCourseOptions = academicCourseData?.data?.map((item) => ({
     value: item._id,
@@ -125,8 +130,8 @@ const OfferNewCourse = () => {
 
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <UsableFormSelect
-                // onValueChange={setFacultyId}
+              <UsableSelectWithWatch
+                onValueChange={setFacultyId}
                 label="Course Name"
                 name="course"
                 options={academicCourseOptions}
@@ -135,6 +140,7 @@ const OfferNewCourse = () => {
 
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect
+                disabled={!facultyId}
                 label="Faculty Name"
                 name="faculty"
                 options={facultyOptions}
@@ -167,7 +173,6 @@ const OfferNewCourse = () => {
                 options={daysOptions}
               />
             </Col>
-            {/* dayoption create korte hobe like we did in create semester */}
 
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <UsableFormSelect

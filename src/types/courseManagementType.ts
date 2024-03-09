@@ -15,6 +15,7 @@ export type TSemester = {
 export type TCourses = {
   _id: string;
   title: string;
+  faculties: string;
   prefix: string;
   code: number;
   credits: number;
@@ -37,9 +38,10 @@ export type TAllCourse = {
 export type TOfferedCourse = {
   _id: string;
   semesterRegistration: string;
-  academicFaculty: string;
-  academicDepartment: string;
-  course: string;
+  academicSemester: { name: string };
+  academicFaculty: { name: string };
+  academicDepartment: { name: string };
+  course: { title: string };
   faculty: string;
   section: number;
   maxCapacity: number;
