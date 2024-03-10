@@ -18,22 +18,12 @@ const AllOffereedCourse = () => {
   } = useGetAllOfferedCoursesQuery(params);
   console.log(OfferedCourseData);
 
-  const tableData = OfferedCourseData?.data?.map(
-    ({
-      semesterRegistration,
-      academicDepartment,
-      academicFaculty,
-      course,
-      _id,
-    }: TOfferedCourse) => ({
-      key: _id,
-      semesterRegistration,
-      academicDepartment,
-      academicFaculty,
-      course,
-      // code: `${prefix} ${code}`,
-    })
-  );
+  const tableData = OfferedCourseData?.data?.map((item) => ({
+    semesterRegistration: item.academicSemester.name,
+    academicDepartment: item.academicDepartment.name,
+    academicFaculty: item.academicFaculty.name,
+    course: item.course.title,
+  }));
 
   const columns: TableColumnsType<TOfferedCourseData> = [
     {

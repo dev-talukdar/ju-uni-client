@@ -84,6 +84,23 @@ const courseManagementApi = baseApi.injectEndpoints({
       },
     }),
 
+    //course Faculties started from here
+    getCourseFaculties: builder.query({
+      query: (id) => {
+        return {
+          url: `/courses/${id}/get-faculties`,
+          method: "GET",
+        };
+      },
+
+      transformResponse: (response: TResponseRedux<TCourses[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
+
     //Offered course registration started from here
     getAllOfferedCourses: builder.query({
       query: (args) => {
@@ -150,4 +167,5 @@ export const {
   useAssignFacultiesMutation,
   useGetAllOfferedCoursesQuery,
   useAddOfferedCourseMutation,
+  useGetCourseFacultiesQuery,
 } = courseManagementApi;

@@ -6,7 +6,7 @@ export type TRoutes = {
 };
 
 export type TUserPath = {
-  name: string;
+  name?: string;
   path?: string;
   element?: ReactNode;
   children?: TUserPath[];
@@ -20,4 +20,5 @@ export type TSidebarItem = {
 
 export type TProtectedRoutes = {
   children: ReactNode;
+  role: string | undefined;
 };
