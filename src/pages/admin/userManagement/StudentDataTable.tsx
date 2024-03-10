@@ -45,7 +45,7 @@ const StudentDataTable = () => {
       email,
       contactNo,
     })
-  ); //TODO -> used unexpected any to satisfy type error
+  );
 
   const columns: TableColumnsType<TTableData> = [
     {

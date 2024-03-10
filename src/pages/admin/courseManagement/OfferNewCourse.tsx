@@ -64,6 +64,8 @@ const OfferNewCourse = () => {
     })
   );
 
+  // TODO: faculties er error remove korte hobe
+
   const academicCourseOptions = academicCourseData?.data?.map((item) => ({
     value: item._id,
     label: item.title,
