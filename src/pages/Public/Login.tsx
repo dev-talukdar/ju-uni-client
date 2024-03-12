@@ -36,6 +36,7 @@ const Login = () => {
       toast.success("logged in", { id: toastId, duration: 2000 });
       // notun  user jokhon login korbe take force kore password change koraitesi ekhane
       if (res.data.needsPasswordChange) {
+        console.log(res);
         navigate(`/change-password`);
       } else navigate(`/${user.role}/dashboard`);
     } catch (err) {
