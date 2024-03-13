@@ -41,7 +41,7 @@ const OfferNewCourse = () => {
   const academicSemesterOptions = semesterRegistrationData?.data?.map(
     (item) => ({
       value: item._id,
-      label: `${item.academicSemester.name} ${item.status}`,
+      label: `${item.academicSemester.name} ${item.academicSemester.year} `,
     })
   );
 

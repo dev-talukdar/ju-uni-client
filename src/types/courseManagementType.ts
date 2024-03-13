@@ -53,6 +53,7 @@ export type TOfferedCourse = {
 export type TSemesterRegistration = {
   _id: string;
   academicSemester: {
+    year: any;
     name: string;
   };
   name: string;
@@ -62,3 +63,5 @@ export type TSemesterRegistration = {
   minCredit: number;
   maxCredit: number;
 };
+
+// need to make some changes in later stage
