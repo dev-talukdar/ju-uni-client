@@ -63,5 +63,3 @@ export type TSemesterRegistration = {
   minCredit: number;
   maxCredit: number;
 };
-
-// need to make some changes in later stage
