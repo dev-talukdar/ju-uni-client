@@ -4,14 +4,17 @@ import baseApi from "../../api/baseApi";
 
 const studentCourseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    //All Offered course started from here
     getAllOfferedCourse: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
+
         if (args) {
           args.forEach((item: TQueryParam) => {
             params.append(item.name, item.value as string);
           });
         }
+
         return {
           url: "/offered-courses/my-offered-courses",
           method: "GET",

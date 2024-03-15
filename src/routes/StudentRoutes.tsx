@@ -1,5 +1,5 @@
-import OfferedCourse from "../pages/faculty/OfferedCourse";
 import StudentDashbaord from "../pages/student/StudentDashbaord";
+import StudentOfferedCourse from "../redux/features/student/Course/StudentOfferedCourse";
 
 export const studentPaths = [
   {
@@ -10,6 +10,6 @@ export const studentPaths = [
   {
     name: "Offered Course",
     path: "offered-course",
-    element: <OfferedCourse></OfferedCourse>,
+    element: <StudentOfferedCourse></StudentOfferedCourse>,
   },
 ];

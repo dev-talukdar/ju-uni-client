@@ -46,6 +46,7 @@ const courseManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["semester"],
     }),
+
     // update semester started from here
     updateRegisteredSemester: builder.mutation({
       query: (args) => ({

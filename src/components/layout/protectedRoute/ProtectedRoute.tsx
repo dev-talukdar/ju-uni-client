@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children, role }: TProtectedRoutes) => {
     dispatch(logout());
     return <Navigate to="/login" replace={true} />;
   }
-  console.log(user);
+  // console.log(user);
   if (!token) {
     return <Navigate to="/login" replace={true} />;
   }
