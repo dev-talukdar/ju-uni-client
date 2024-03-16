@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 export type TTableData = Pick<
   TStudent,
-  "fullName" | "id" | "email" | "contactNo"
+  "fullName" | "id" | "email" | "admissionSemester"
 >;
 
 const StudentDataTable = () => {
@@ -33,17 +33,17 @@ const StudentDataTable = () => {
     ...params,
   ]);
 
-  // console.log({ isLoading, isFetching });
+  console.log(studentData);
 
   const metaData = studentData?.meta;
 
   const tableData = (studentData?.data as any)?.map(
-    ({ _id, fullName, id, email, contactNo }: TStudent) => ({
+    ({ _id, name, id, email, admissionSemester }: TStudent) => ({
       key: _id,
-      fullName,
+      name: `${name.firstName} ${name.middleName} ${name.lastName}`,
       id,
       email,
-      contactNo,
+      admissionSemester: `${admissionSemester.name} ${admissionSemester.year} `,
     })
   );
 
@@ -51,7 +51,7 @@ const StudentDataTable = () => {
     {
       title: "Name",
       key: "name",
-      dataIndex: "fullName",
+      dataIndex: "name",
     },
     {
       title: "Roll Number",
@@ -64,9 +64,9 @@ const StudentDataTable = () => {
       dataIndex: "email",
     },
     {
-      title: "Contact Number",
-      key: "contactNo",
-      dataIndex: "contactNo",
+      title: "Admission Semester",
+      key: "admissionSemester",
+      dataIndex: "admissionSemester",
     },
 
     {

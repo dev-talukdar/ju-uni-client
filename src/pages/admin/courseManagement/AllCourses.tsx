@@ -99,7 +99,7 @@ const AddFacultyModal = ({ facultyInformation }) => {
 
   const createFacultyOptions = facultiesData?.data?.map((item) => ({
     value: item._id,
-    label: item.fullName,
+    label: `${item.name.firstName} ${item.name.middleName} ${item.name.lastName}`,
   }));
 
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {

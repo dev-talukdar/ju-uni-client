@@ -1,18 +1,22 @@
 import { Button, Table, TableColumnsType, TableProps } from "antd";
 import { TFaculty } from "../../../types/userManagementType";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/UserManagementApi";
-export type TTableData = Pick<TFaculty, "name" | "designation" | "email">;
+export type TTableData = Pick<
+  TFaculty,
+  "name" | "designation" | "academicDepartment" | "email"
+>;
 
 const AllFaculty = () => {
   const { data: facultyData } = useGetAllFacultiesQuery(undefined);
-  console.log(facultyData);
+  // console.log(facultyData);
 
   const tableData = facultyData?.data?.map(
-    ({ _id, name, designation, email }) => ({
+    ({ _id, name, designation, email, academicDepartment }) => ({
       key: _id,
       name: `${name.firstName} ${name.middleName} ${name.lastName}`,
       designation,
       email,
+      academicDepartment: academicDepartment.name,
     })
   );
 
@@ -31,6 +35,11 @@ const AllFaculty = () => {
       title: "Email",
       key: "email",
       dataIndex: "email",
+    },
+    {
+      title: "Department",
+      key: "academicDepartment",
+      dataIndex: "academicDepartment",
     },
     {
       title: "Action",

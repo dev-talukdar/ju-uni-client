@@ -17,27 +17,27 @@ const AcademicDepartment = () => {
     isFetching,
   } = useGetAllDepartmentQuery(params);
 
-  // console.log({ isLoading, isFetching });
+  console.log(departmentData);
   // TODO : Kokon department create hoise , eta fix kora lagbe
 
   const tableData = departmentData?.data?.map(
     ({ _id, name, academicFaculty }) => ({
       key: _id,
       name,
-      academicFaculty,
+      academicFaculty: academicFaculty.name,
     })
   );
 
   const columns: TableColumnsType<TAcademicDeptTableData> = [
     {
-      title: "Name",
+      title: "Department Name",
       key: "name",
       dataIndex: "name",
     },
     {
-      title: "Created At",
-      key: "year",
-      dataIndex: "year",
+      title: "Faculty Member",
+      key: "academicFaculty",
+      dataIndex: "academicFaculty",
     },
 
     {

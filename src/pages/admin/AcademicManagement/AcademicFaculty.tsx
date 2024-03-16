@@ -13,6 +13,7 @@ const AcademicFaculty = () => {
     isLoading,
     isFetching,
   } = useGetAllAcademicFacultyQuery(params);
+  console.log(facultyData);
 
   // console.log({ isLoading, isFetching });
 
@@ -113,3 +114,5 @@ const AcademicFaculty = () => {
 };
 
 export default AcademicFaculty;
+
+//TODO: Reload na dile updated faculty name show korena

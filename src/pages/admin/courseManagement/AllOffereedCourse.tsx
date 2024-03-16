@@ -22,7 +22,7 @@ const AllOffereedCourse = () => {
     semesterRegistration: item.academicSemester.name,
     academicDepartment: item.academicDepartment.name,
     academicFaculty: item.academicFaculty.name,
-    course: item.course.title,
+    course: item.course,
   }));
 
   const columns: TableColumnsType<TOfferedCourseData> = [
