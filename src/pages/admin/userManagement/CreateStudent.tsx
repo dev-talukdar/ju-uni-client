@@ -319,7 +319,7 @@ const CreateStudent = () => {
                 options={createStudentSemesterOptions}
                 disabled={SemesterIsLoading}
                 name="admissionSemester"
-                label="Admission Semester"
+                label="Academic Semester"
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>

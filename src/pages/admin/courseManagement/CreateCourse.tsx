@@ -63,7 +63,7 @@ const CreateCourse = () => {
                 mode="multiple"
                 options={preRequisiteCoursesOptions}
                 name="preRequisiteCourses"
-                label="preRequisiteCourses"
+                label="Pre Requisite Courses"
               />
             </Col>
           </Row>
