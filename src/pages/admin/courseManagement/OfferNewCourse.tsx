@@ -60,7 +60,7 @@ const OfferNewCourse = () => {
   const facultyOptions = fetchingFaculties?.data?.faculties?.map(
     (item: any) => ({
       value: item._id,
-      label: item.fullName,
+      label: `${item.name.firstName} ${item.name.middleName} ${item.name.lastName}`,
     })
   );
 
