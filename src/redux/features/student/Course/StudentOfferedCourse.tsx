@@ -1,10 +1,18 @@
-import { useGetAllOfferedCourseQuery } from "../../admin/studentCourseApi";
+import {
+  useEnrolledCourseMutation,
+  useGetAllOfferedCourseQuery,
+} from "../../admin/studentCourseApi";
 import { Button, Col, Row } from "antd";
+
+type TCourse = {
+  [index: string]: any;
+};
 
 const StudentOfferedCourse = () => {
   const { data: offeredCourseData } = useGetAllOfferedCourseQuery(undefined);
+  const [enroll] = useEnrolledCourseMutation();
 
-  const singleObject = offeredCourseData?.data?.reduce((acc, item) => {
+  const singleObject = offeredCourseData?.data?.reduce((acc: TCourse, item) => {
     const key = item.course.title;
     acc[key] = acc[key] || { courseTitle: key, sections: [] };
 
@@ -20,6 +28,22 @@ const StudentOfferedCourse = () => {
   }, {});
 
   const modifiedData = Object.values(singleObject ? singleObject : {});
+
+  // const handleEnroll = async (id) => {
+  //   const enrolledData = {
+  //     offeredCourse: id,
+  //   };
+  //   const res = await enroll(enrolledData);
+  //   console.log(res);
+  // };
+
+  const handleEnroll = async (id) => {
+    const enrolledData = {
+      offeredCourse: id,
+    };
+    const res = await enroll(enrolledData);
+    console.log(res);
+  };
   return (
     <Row gutter={[0, 20]}>
       {modifiedData.map((item) => {
@@ -28,7 +52,7 @@ const StudentOfferedCourse = () => {
             span={24}
             style={{ border: "solid #d4d4d4 2px", padding: "10px" }}
           >
-            <h2>Course Name: {item.courseTitle}</h2>
+            <h2> {item.courseTitle}</h2>
             <div>
               {item.sections.map((section) => {
                 return (
@@ -46,7 +70,9 @@ const StudentOfferedCourse = () => {
                     </Col>
                     <Col span={5}>Class Started: {section.startTime}</Col>
                     <Col span={5}>Class Ended: {section.endTime}</Col>
-                    <Button>Enroll Now</Button>
+                    <Button onClick={() => handleEnroll(section._id)}>
+                      Enroll Now
+                    </Button>
                   </Row>
                 );
               })}

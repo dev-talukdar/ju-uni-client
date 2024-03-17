@@ -71,7 +71,13 @@ const baseQueryRefreshToken: BaseQueryFn<
 const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryRefreshToken,
-  tagTypes: ["semester", "courses", "faculties", "offeredCourse"],
+  tagTypes: [
+    "semester",
+    "courses",
+    "faculties",
+    "offeredCourse",
+    "enrolledCourse",
+  ],
   endpoints: () => ({}),
 });
 
