@@ -2,9 +2,12 @@ import { Button, Col, Flex } from "antd";
 import UsableForm from "../../components/UsableForm/UsableForm";
 import UsableFormSelect from "../../components/UsableForm/UsableFormSelect";
 import { useGetAllFacultyCourseQuery } from "../../redux/features/faculty/facultyCoursesApi";
+import { useNavigate } from "react-router-dom";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const MyCourses = () => {
   const { data: facultyCoursesData } = useGetAllFacultyCourseQuery(undefined);
+  const navigate = useNavigate();
 
   console.log(facultyCoursesData);
 
@@ -18,8 +21,8 @@ const MyCourses = () => {
     value: item.course._id,
   }));
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    navigate(`/faculty/courses/${data.semesterRegistration}/${data.course}`);
   };
   return (
     <Flex justify="center" align="center">
