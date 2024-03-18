@@ -2,10 +2,10 @@ import { TStudentOfferedCourses } from "../../../types/StudentCourses";
 import { TQueryParam, TResponseRedux } from "../../../types/global";
 import baseApi from "../../api/baseApi";
 
-const studentCourseApi = baseApi.injectEndpoints({
+const facultyCourseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     //All Offered course started from here
-    getAllOfferedCourse: builder.query({
+    getAllFacultyCourse: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
 
@@ -16,43 +16,13 @@ const studentCourseApi = baseApi.injectEndpoints({
         }
 
         return {
-          url: "/offered-courses/my-offered-courses",
+          url: "/enrolled-courses",
           method: "GET",
           params: params,
         };
       },
 
       providesTags: ["offeredCourse"],
-
-      transformResponse: (
-        response: TResponseRedux<TStudentOfferedCourses[]>
-      ) => {
-        return {
-          data: response.data,
-          meta: response.meta,
-        };
-      },
-    }),
-
-    //All enrolled course started from here
-    getAllEnrolledCourse: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-
-        return {
-          url: "/enrolled-courses/my-enrolled-courses",
-          method: "GET",
-          params: params,
-        };
-      },
-
-      providesTags: ["enrolledCourse"],
 
       transformResponse: (
         response: TResponseRedux<TStudentOfferedCourses[]>
@@ -75,8 +45,4 @@ const studentCourseApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {
-  useGetAllOfferedCourseQuery,
-  useEnrolledCourseMutation,
-  useGetAllEnrolledCourseQuery,
-} = studentCourseApi;
+export const { useGetAllFacultyCourseQuery } = facultyCourseApi;
