@@ -20,6 +20,7 @@ export type TStudentOfferedCourses = {
   isPreRequisitesFulFilled: boolean;
   isAlreadyEnrolled: boolean;
   offeredCourse: string;
+  student: string;
 };
 
 export type TStudentCourse = {

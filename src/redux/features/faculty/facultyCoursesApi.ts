@@ -34,15 +34,15 @@ const facultyCourseApi = baseApi.injectEndpoints({
       },
     }),
 
-    enrolledCourse: builder.mutation({
+    addMarkstoStudent: builder.mutation({
       query: (data) => ({
-        url: "/enrolled-courses/create-enrolled-course",
-        method: "POST",
+        url: "/enrolled-courses/update-enrolled-course-marks",
+        method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["offeredCourse"],
     }),
   }),
 });
 
-export const { useGetAllFacultyCourseQuery } = facultyCourseApi;
+export const { useGetAllFacultyCourseQuery, useAddMarkstoStudentMutation } =
+  facultyCourseApi;
