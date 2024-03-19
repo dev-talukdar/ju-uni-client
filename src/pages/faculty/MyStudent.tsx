@@ -106,3 +106,5 @@ const AddMarksModal = ({ studentInfo }) => {
 };
 
 export default MyStudent;
+
+// TODO : student er profile e tar marks show korano baki , eta implment korte hobe
