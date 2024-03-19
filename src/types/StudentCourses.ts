@@ -19,6 +19,8 @@ export type TStudentOfferedCourses = {
   completedCourseIds: any[];
   isPreRequisitesFulFilled: boolean;
   isAlreadyEnrolled: boolean;
+  offeredCourse: string;
+  student: string;
 };
 
 export type TStudentCourse = {

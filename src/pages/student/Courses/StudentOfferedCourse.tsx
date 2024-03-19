@@ -1,8 +1,8 @@
+import { Button, Col, Row } from "antd";
 import {
   useEnrolledCourseMutation,
   useGetAllOfferedCourseQuery,
-} from "../../admin/studentCourseApi";
-import { Button, Col, Row } from "antd";
+} from "../../../redux/features/admin/studentCourseApi";
 
 type TCourse = {
   [index: string]: any;
@@ -29,14 +29,6 @@ const StudentOfferedCourse = () => {
 
   const modifiedData = Object.values(singleObject ? singleObject : {});
 
-  // const handleEnroll = async (id) => {
-  //   const enrolledData = {
-  //     offeredCourse: id,
-  //   };
-  //   const res = await enroll(enrolledData);
-  //   console.log(res);
-  // };
-
   const handleEnroll = async (id) => {
     const enrolledData = {
       offeredCourse: id,
@@ -44,6 +36,10 @@ const StudentOfferedCourse = () => {
     const res = await enroll(enrolledData);
     console.log(res);
   };
+
+  if (!modifiedData.length) {
+    return <p>There is no available course at this moment</p>;
+  }
   return (
     <Row gutter={[0, 20]}>
       {modifiedData.map((item) => {
